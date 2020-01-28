@@ -2,6 +2,7 @@
   {
     "name": "qjs",
     "type": "zip",
-    "url": "https://bellard.org/quickjs/quickjs-2020-01-19.tar.xz"
+    "url": "https://bellard.org/quickjs/quickjs-2020-01-19.tar.xz",
+    "checksum": "ebe845917b059ac199df0fd26496c256"
   }
 ]
