@@ -1,7 +1,7 @@
 [
   {
     "name": "qjs",
-    "version": "2020-01-19",
-    "url": "https://bellard.org/quickjs/quickjs-{version}.tar.xz"
+    "type": "zip",
+    "url": "https://bellard.org/quickjs/quickjs-2020-01-19.tar.xz"
   }
 ]
