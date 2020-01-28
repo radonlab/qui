@@ -1,0 +1,6 @@
+# Settings
+.vscode
+# Build Tree
+build
+# Third Party
+third_party/*/
