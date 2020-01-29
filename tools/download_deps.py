@@ -30,9 +30,14 @@ def clean_target_dir(target):
 
 
 def download_from_url(url, target):
-    with request.urlopen(url) as resp:
+    with request.urlopen(url) as res:
         with open(target, 'wb') as fp:
-            shutil.copyfileobj(resp, fp)
+            buf_size = 4096
+            while True:
+                buf = res.read(buf_size)
+                if not buf:
+                    break
+                fp.write(buf)
 
 
 def extract_zip_file(file, target):
@@ -43,8 +48,9 @@ def extract_zip_file(file, target):
 def verify_checksum(file, checksum):
     md5 = hashlib.md5()
     with open(file, 'rb') as fp:
+        buf_size = 4096
         while True:
-            buf = fp.read(4096)
+            buf = fp.read(buf_size)
             if not buf:
                 break
             md5.update(buf)
