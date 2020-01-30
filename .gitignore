@@ -4,3 +4,6 @@
 build
 # Third Party
 third_party/*/
+# Python Byte-code
+__pycache__
+*.py[cod]
