@@ -23,17 +23,21 @@ class _Segment:
 
 
 class Progress:
-    def __init__(self, name, value=0, total=100):
-        self.name = name
-        self.value = value
-        self.total = total
+    def __init__(self, label='', ratio=0):
+        self.label = label
+        self.ratio = ratio
         self.config()
 
-    def config(self, template='$name:20 [$progress] $value:r3/$total:20'):
+    def config(self, template='$label:20 [$progress] $percent:20'):
         size = shutil.get_terminal_size()
         self.max_width = size[0]
         self.max_height = size[1]
         self.segs = self._parse(template)
+
+    @property
+    def percent(self):
+        value = math.floor(self.ratio * 100)
+        return '{}%'.format(value)
 
     def _parse(self, template):
         pat = re.compile(r'(\$\w+)(?:\:(l|r)?(\d+))?')
@@ -59,8 +63,7 @@ class Progress:
 
     def _get_value(self, name, width):
         if name == 'progress':
-            rate = self.value / self.total
-            value = '=' * math.floor(rate * width)
+            value = '=' * math.floor(self.ratio * width)
         else:
             value = getattr(self, name, '')
         return str(value)
@@ -69,9 +72,9 @@ class Progress:
         line = io.StringIO()
         for s in self.segs:
             line.write(s.to_string(self._get_value))
-        end = '\r' if self.value < self.total else '\n'
+        end = '\r' if self.ratio < 1 else '\n'
         print(line.getvalue(), end=end, flush=True)
 
-    def update(self, value):
-        self.value = value
+    def update(self, ratio=0):
+        self.ratio = ratio
         self.redraw()
