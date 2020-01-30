@@ -1,43 +1,53 @@
 import re
+import io
 import math
 import shutil
 
 
-class _StringSeg:
-    def __init__(self, name, text, width):
-        self.name = name
+class _Segment:
+    def __init__(self, text, align, width):
         self.text = text
+        self.align = align
         self.width = width
 
-    def __str__(self):
-        return self.text.ljust(self.width)[:self.width]
+    def to_string(self, getvalue):
+        if not self.text.startswith('$'):
+            return self.text
+        # placeholder
+        value = getvalue(self.text[1:], self.width)
+        if self.align == 'r':
+            value = value.rjust(self.width)
+        else:
+            value = value.ljust(self.width)
+        return value[:self.width]
 
 
 class Progress:
-    def __init__(self, name, rate=0, total=100):
+    def __init__(self, name, value=0, total=100):
         self.name = name
-        self.rate = rate
+        self.value = value
         self.total = total
         self.config()
 
-    def config(self, template='$name:16 [$progress] $percentage:10'):
+    def config(self, template='$name:20 [$progress] $value:r3/$total:20'):
         size = shutil.get_terminal_size()
         self.max_width = size[0]
         self.max_height = size[1]
         self.segs = self._parse(template)
 
     def _parse(self, template):
-        pat = re.compile(r'\$(\w+)(?:\:(\d+))?')
+        pat = re.compile(r'(\$\w+)(?:\:(l|r)?(\d+))?')
         segs = []
         last = 0
         for m in pat.finditer(template):
             text = template[last:m.start()]
             if text:
-                segs.append(_StringSeg(None, text, len(text)))
+                segs.append(_Segment(text, None, len(text)))
             last = m.end()
-            name = m.group(1)
-            width = int(m.group(2)) if m.group(2) else 0
-            segs.append(_StringSeg(name, None, width))
+            text = m.group(1)
+            align = m.group(2)
+            width = int(m.group(3)) if m.group(3) else 0
+            segs.append(_Segment(text, align, width))
         # calculate auto width
         rest_width = self.max_width - sum(map(lambda s: s.width, segs))
         auto_count = sum(map(lambda s: 1 if s.width == 0 else 0, segs))
@@ -47,22 +57,21 @@ class Progress:
                 s.width = auto_width
         return segs
 
-    def redraw(self):
-        current = math.floor(self.total * self.rate)
-        ctx = {
-            'name': self.name,
-            'progress': '=',
-            'percentage': '{}/{}'.format(current, self.total),
-        }
-        for s in self.segs:
-            if s.name is not None:
-                s.text = ctx.get(s.name)
-                if s.name == 'progress':
-                    s.text = s.text[0] * math.floor(s.width * self.rate)
-        line = ''.join(map(str, self.segs))
-        end = '\r' if self.rate < 1 else '\n'
-        print(line, end=end, flush=True)
+    def _get_value(self, name, width):
+        if name == 'progress':
+            rate = self.value / self.total
+            value = '=' * math.floor(rate * width)
+        else:
+            value = getattr(self, name, '')
+        return str(value)
 
-    def update(self, rate):
-        self.rate = rate
+    def redraw(self):
+        line = io.StringIO()
+        for s in self.segs:
+            line.write(s.to_string(self._get_value))
+        end = '\r' if self.value < self.total else '\n'
+        print(line.getvalue(), end=end, flush=True)
+
+    def update(self, value):
+        self.value = value
         self.redraw()
