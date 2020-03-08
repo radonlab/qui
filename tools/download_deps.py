@@ -30,57 +30,10 @@ def clean_target_dir(target):
         shutil.rmtree(target)
 
 
-def download_from_url(url, target, label='Download'):
-    prog = Progress(label)
-    with request.urlopen(url) as res, open(target, 'wb') as fp:
-        total_size = int(res.getheader('Content-Length'))
-        count_size = 0
-        buf_size = 4096
-        while True:
-            buf = res.read(buf_size)
-            if not buf:
-                break
-            fp.write(buf)
-            count_size += len(buf)
-            prog.update(count_size / total_size)
-
-
-def extract_zip_file(file, target):
-    with tarfile.open(file) as arch:
-        arch.extractall(target)
-
-
-def verify_checksum(file, checksum):
-    md5 = hashlib.md5()
-    with open(file, 'rb') as fp:
-        buf_size = 4096
-        while True:
-            buf = fp.read(buf_size)
-            if not buf:
-                break
-            md5.update(buf)
-    digest = md5.hexdigest()
-    if digest != checksum:
-        raise Exception('Mismatched checksum')
-
-
-def download_and_extract_zip(dep, target_dir):
-    tmp = tempfile.mktemp()
-    label = 'Download: {}'.format(dep.name)
-    download_from_url(dep.url, tmp, label)
-    if dep.checksum:
-        verify_checksum(tmp, dep.checksum)
-    extract_zip_file(tmp, target_dir)
-
-
 def download_dependencies(dep_list, dest_dir):
     for dep in dep_list:
         target_dir = os.path.join(dest_dir, dep.name)
         clean_target_dir(target_dir)
-        if dep.type == 'zip':
-            download_and_extract_zip(dep, target_dir)
-        else:
-            raise Exception('Unsupported type')
 
 
 def main():
