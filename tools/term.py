@@ -75,6 +75,6 @@ class Progress:
         end = '\r' if self.ratio < 1 else '\n'
         print(line.getvalue(), end=end, flush=True)
 
-    def update(self, ratio=0):
-        self.ratio = ratio
+    def update(self, ratio):
+        self.ratio = min(ratio, 1)
         self.redraw()
