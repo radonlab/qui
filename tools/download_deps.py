@@ -1,11 +1,7 @@
 import os
 import json
 import shutil
-import hashlib
-import tempfile
-import tarfile
-from urllib import request
-from term import Progress
+import subprocess
 
 
 class DepInfo:
@@ -13,7 +9,14 @@ class DepInfo:
         self.name = d['name']
         self.type = d['type']
         self.url = d['url']
-        self.checksum = d.get('checksum')
+        self.branch = d.get('branch')
+
+    def download_to(self, target_dir):
+        assert(self.type == 'git')
+        subprocess.call(['git', 'clone', self.url, target_dir])
+
+    def checkout(self):
+        subprocess.call(['git', 'checkout', self.branch])
 
 
 def find_project_root(lookup_file='.git'):
@@ -28,12 +31,19 @@ def find_project_root(lookup_file='.git'):
 def clean_target_dir(target):
     if os.path.exists(target):
         shutil.rmtree(target)
+    os.makedirs(target)
 
 
 def download_dependencies(dep_list, dest_dir):
     for dep in dep_list:
         target_dir = os.path.join(dest_dir, dep.name)
         clean_target_dir(target_dir)
+        dep.download_to(target_dir)
+
+
+def checkout_branches(dep_list):
+    for dep in dep_list:
+        dep.checkout()
 
 
 def main():
@@ -43,6 +53,7 @@ def main():
     with open(deps_file, 'r') as fp:
         dep_list = map(DepInfo, json.load(fp))
     download_dependencies(dep_list, dest_dir)
+    checkout_branches(dep_list)
 
 
 if __name__ == '__main__':
