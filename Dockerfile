@@ -7,6 +7,6 @@ ARG USER_GID=$USER_UID
 RUN groupadd -g $USER_GID $USERNAME \
     && useradd -u $USER_UID -g $USER_GID -m $USERNAME \
     && apt-get update \
-    && apt-get install -y build-essential cmake libx11-dev libxrandr-dev
+    && apt-get install -y build-essential cmake xorg-dev
 
 USER $USERNAME
