@@ -6,6 +6,7 @@ endif()
 
 project(qui VERSION 0.0.1 LANGUAGES C)
 
+add_subdirectory(third_party)
 add_subdirectory(src)
 
 if(QUI_BUILD_EXAMPLES)
