@@ -1,5 +1,6 @@
 import re
 import io
+import sys
 import math
 import shutil
 
@@ -73,7 +74,9 @@ class Progress:
         for s in self.segs:
             line.write(s.to_string(self._get_value))
         end = '\r' if self.ratio < 1 else '\n'
-        print(line.getvalue(), end=end, flush=True)
+        line.write(end)
+        sys.stdout.write(line.getvalue())
+        sys.stdout.flush()
 
     def update(self, ratio):
         self.ratio = min(ratio, 1)
