@@ -9,6 +9,6 @@
     "name": "skia",
     "type": "git",
     "url": "git@github.com:google/skia.git",
-    "branch": "master"
+    "branch": "chrome/m72"
   }
 ]
