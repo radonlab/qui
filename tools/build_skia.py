@@ -6,6 +6,11 @@ from buildutils import find_project_root
 build_args = {
     'is_official_build': True,
     'is_component_build': True,
+    'skia_use_angle': True,
+    'skia_use_system_icu': False,
+    'skia_use_system_libjpeg_turbo': False,
+    'skia_use_system_libpng': False,
+    'skia_use_system_libwebp': False,
 }
 
 
