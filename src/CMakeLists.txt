@@ -12,3 +12,4 @@ set(QUI_HEADERS
 )
 
 add_library(qui STATIC ${QUI_SOURCES} ${QUI_HEADERS})
+target_include_directories(qui PUBLIC "${CMAKE_SOURCE_DIR}/src")
