@@ -1,2 +1,2 @@
-add_executable(simple simple.c)
-target_link_libraries(simple glfw)
+add_executable(simple simple.cc)
+target_link_libraries(simple glfw qui)
