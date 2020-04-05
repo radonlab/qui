@@ -3,6 +3,10 @@
 
 #include "qui_types.h"
 
-bool qui_init_context();
+namespace qui {
+
+bool InitContext();
+
+}  // namespace qui
 
 #endif  // QUI_SRC_CONTEXT_H_

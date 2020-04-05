@@ -4,7 +4,7 @@
 int main(int argc, const char* argv[]) {
   GLFWwindow* window;
   glfwInit();
-  qui_init_context();
+  qui::InitContext();
   window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
   while (!glfwWindowShouldClose(window)) {
     glfwPollEvents();

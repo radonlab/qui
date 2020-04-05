@@ -1,5 +1,9 @@
 #include "context.h"
 
-bool qui_init_context() {
+namespace qui {
+
+bool InitContext() {
   return true;
 }
+
+}  // namespace qui
