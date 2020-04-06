@@ -12,5 +12,6 @@ set(QUI_HEADERS
 )
 
 add_library(qui STATIC ${QUI_SOURCES} ${QUI_HEADERS})
-set_property(TARGET qui PROPERTY CXX_STANDARD 98)
+set_property(TARGET qui PROPERTY CXX_STANDARD 11)
+target_link_libraries(qui ${SKIA_LIBRARIES})
 target_include_directories(qui PUBLIC "${CMAKE_SOURCE_DIR}/src")
