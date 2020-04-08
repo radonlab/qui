@@ -4,8 +4,9 @@
 int main(int argc, const char* argv[]) {
   GLFWwindow* window;
   glfwInit();
-  qui::InitContext();
   window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+  glfwMakeContextCurrent(window);
+  qui::InitContext();
   while (!glfwWindowShouldClose(window)) {
     glfwPollEvents();
   }
