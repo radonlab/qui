@@ -15,7 +15,13 @@ bool InitContext() {
       nullptr,
       get_glfw_proc
   );
+  if (gl == nullptr) {
+    return false;
+  }
   sk_sp<GrContext> context = GrContext::MakeGL(gl);
+  if (context == nullptr) {
+    return false;
+  }
   return true;
 }
 
