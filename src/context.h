@@ -6,6 +6,7 @@
 namespace qui {
 
 bool InitContext();
+bool RescaleContext();
 
 }  // namespace qui
 
