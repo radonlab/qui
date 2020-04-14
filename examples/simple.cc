@@ -9,6 +9,8 @@ int main(int argc, const char* argv[]) {
   qui::InitContext();
   while (!glfwWindowShouldClose(window)) {
     glfwPollEvents();
+    qui::RescaleContext(640, 480);
+    glfwSwapBuffers(window);
   }
   glfwTerminate();
   return 0;

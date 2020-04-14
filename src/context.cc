@@ -28,11 +28,11 @@ bool InitContext() {
   return true;
 }
 
-bool RescaleContext() {
+bool RescaleContext(int width, int height) {
   GrGLFramebufferInfo buf_info;
   buf_info.fFBOID = 0;
   buf_info.fFormat = GL_RGBA8;
-  GrBackendRenderTarget render_target(800, 500, 0, 0, buf_info);
+  GrBackendRenderTarget render_target(width, height, 0, 0, buf_info);
   sk_sp<SkSurface> surface = SkSurface::MakeFromBackendRenderTarget(
       context.get(),
       render_target,
