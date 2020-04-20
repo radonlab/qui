@@ -9,7 +9,7 @@ Window::Window(int width, int height) {
 }
 
 Window::~Window() {
-  glfwDestroyWindow(hwnd_);
+  glfwDestroyWindow(reinterpret_cast<GLFWwindow*>(hwnd_));
 }
 
 }  // namespace qui

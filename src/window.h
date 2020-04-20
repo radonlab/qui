@@ -1,8 +1,6 @@
 #ifndef QUI_SRC_WINDOW_H_
 #define QUI_SRC_WINDOW_H_
 
-struct GLFWwindow;
-
 namespace qui {
 
 class Window {
@@ -11,7 +9,7 @@ class Window {
   ~Window();
 
  private:
-  GLFWwindow* hwnd_;
+  void* hwnd_;
 };
 
 }  // namespace qui
