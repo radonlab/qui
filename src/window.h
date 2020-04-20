@@ -5,7 +5,7 @@ namespace qui {
 
 class Window {
  public:
-  Window(int width, int height);
+  Window(const char* title, int width, int height);
   ~Window();
 
  private:

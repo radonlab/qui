@@ -4,8 +4,8 @@
 
 namespace qui {
 
-Window::Window(int width, int height) {
-  hwnd_ = glfwCreateWindow(width, height, "", nullptr, nullptr);
+Window::Window(const char* title, int width, int height) {
+  hwnd_ = glfwCreateWindow(width, height, title, nullptr, nullptr);
 }
 
 Window::~Window() {
