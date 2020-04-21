@@ -6,6 +6,7 @@ namespace qui {
 
 Window::Window(const char* title, int width, int height) {
   hwnd_ = glfwCreateWindow(width, height, title, nullptr, nullptr);
+  glfwMakeContextCurrent(reinterpret_cast<GLFWwindow*>(hwnd_));
 }
 
 Window::~Window() {

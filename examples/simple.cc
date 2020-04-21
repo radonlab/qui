@@ -1,17 +1,8 @@
-#include "GLFW/glfw3.h"
-#include "context.h"
+#include "application.h"
+#include "window.h"
 
 int main(int argc, const char* argv[]) {
-  GLFWwindow* window;
-  glfwInit();
-  window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-  glfwMakeContextCurrent(window);
-  qui::InitContext();
-  while (!glfwWindowShouldClose(window)) {
-    glfwPollEvents();
-    qui::RescaleContext(640, 480);
-    glfwSwapBuffers(window);
-  }
-  glfwTerminate();
-  return 0;
+  qui::Application app(argc, argv);
+  qui::Window win("simple", 800, 500);
+  return app.Run();
 }

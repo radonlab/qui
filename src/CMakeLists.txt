@@ -3,12 +3,16 @@ find_package(Skia REQUIRED)
 include_directories(${SKIA_INCLUDE_DIRS})
 
 set(QUI_SOURCES
+  application.cc
   context.cc
+  window.cc
 )
 
 set(QUI_HEADERS
+  application.h
   context.h
   qui_types.h
+  window.h
 )
 
 add_library(qui STATIC ${QUI_SOURCES} ${QUI_HEADERS})

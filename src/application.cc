@@ -12,6 +12,13 @@ Application::~Application() {
   glfwTerminate();
 }
 
-int Application::Run() {}
+int Application::Run() {
+  GLFWwindow* wnd = glfwGetCurrentContext();
+  while (!glfwWindowShouldClose(wnd)) {
+    glfwSwapBuffers(wnd);
+    glfwPollEvents();
+  }
+  return 0;
+}
 
 }  // namespace qui
