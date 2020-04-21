@@ -5,9 +5,9 @@ namespace qui {
 
 class Application {
  public:
-  Application();
+  Application(int argc, const char* argv[]);
   ~Application();
-  void Run();
+  int Run();
 };
 
 }  // namespace qui

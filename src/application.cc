@@ -4,7 +4,7 @@
 
 namespace qui {
 
-Application::Application() {
+Application::Application(int argc, const char* argv[]) {
   glfwInit();
 }
 
@@ -12,6 +12,6 @@ Application::~Application() {
   glfwTerminate();
 }
 
-void Application::Run() {}
+int Application::Run() {}
 
 }  // namespace qui
