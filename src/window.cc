@@ -4,13 +4,30 @@
 
 namespace qui {
 
-Window::Window(const char* title, int width, int height) {
-  hwnd_ = glfwCreateWindow(width, height, title, nullptr, nullptr);
-  glfwMakeContextCurrent(reinterpret_cast<GLFWwindow*>(hwnd_));
+Window* Window::CreateWindow(const char* title, int width, int height) {
+  GLFWwindow* hwnd = glfwCreateWindow(width, height, title, nullptr, nullptr);
+  // bind GL context
+  glfwMakeContextCurrent(hwnd);
+  return new Window(hwnd);
 }
 
-Window::~Window() {
+Window::Window(void* hwnd)
+    : hwnd_(hwnd) {}
+
+Window::~Window() {}
+
+int Window::Run() {
+  GLFWwindow* hwnd = reinterpret_cast<GLFWwindow*>(hwnd_);
+  while (!glfwWindowShouldClose(hwnd)) {
+    glfwSwapBuffers(hwnd);
+    glfwPollEvents();
+  }
+  return 0;
+}
+
+void Window::Destroy() {
   glfwDestroyWindow(reinterpret_cast<GLFWwindow*>(hwnd_));
+  delete this;
 }
 
 }  // namespace qui
