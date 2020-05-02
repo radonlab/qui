@@ -10,6 +10,9 @@ Application::Application(int argc, const char* argv[]) {
 Application::~Application() {
 }
 
+void Application::CreateWindow(const char* title, int width, int height) {
+}
+
 int Application::Run() {
   return 0;
 }
