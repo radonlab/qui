@@ -5,11 +5,9 @@
 namespace qui {
 
 Application::Application(int argc, const char* argv[]) {
-  glfwInit();
 }
 
 Application::~Application() {
-  glfwTerminate();
 }
 
 int Application::Run() {
