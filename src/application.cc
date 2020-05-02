@@ -1,6 +1,6 @@
 #include "application.h"
 
-#include "GLFW/glfw3.h"
+#include "render_process.h"
 
 namespace qui {
 
@@ -10,7 +10,8 @@ Application::Application(int argc, const char* argv[]) {
 Application::~Application() {
 }
 
-void Application::CreateWindow(const char* title, int width, int height) {
+int Application::SpawnProcess() {
+  return 1;
 }
 
 int Application::Run() {

@@ -9,7 +9,7 @@ class Application {
  public:
   Application(int argc, const char* argv[]);
   ~Application();
-  void CreateWindow(const char* title, int width, int height);
+  int SpawnProcess();
   int Run();
 
  private:
