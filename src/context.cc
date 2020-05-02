@@ -36,7 +36,7 @@ bool RescaleContext(int width, int height) {
   sk_sp<SkSurface> surface = SkSurface::MakeFromBackendRenderTarget(
       context.get(),
       render_target,
-      kTopLeft_GrSurfaceOrigin,
+      kBottomLeft_GrSurfaceOrigin,
       kRGBA_8888_SkColorType,
       nullptr,
       nullptr
