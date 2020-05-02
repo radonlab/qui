@@ -13,11 +13,6 @@ Application::~Application() {
 }
 
 int Application::Run() {
-  GLFWwindow* wnd = glfwGetCurrentContext();
-  while (!glfwWindowShouldClose(wnd)) {
-    glfwSwapBuffers(wnd);
-    glfwPollEvents();
-  }
   return 0;
 }
 
