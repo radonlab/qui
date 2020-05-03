@@ -1,5 +1,11 @@
 [
   {
+    "name": "gflags",
+    "type": "git",
+    "url": "git@github.com:gflags/gflags.git",
+    "branch": "v2.2.2"
+  },
+  {
     "name": "glfw",
     "type": "git",
     "url": "git@github.com:glfw/glfw.git",
