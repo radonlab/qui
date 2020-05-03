@@ -7,7 +7,7 @@ namespace qui {
 
 class Application {
  public:
-  Application(int argc, const char* argv[]);
+  Application(int argc, char* argv[]);
   ~Application();
   int SpawnProcess();
   int Run();

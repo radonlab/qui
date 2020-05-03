@@ -1,7 +1,7 @@
 #include "application.h"
 #include "window.h"
 
-int main(int argc, const char* argv[]) {
+int main(int argc, char* argv[]) {
   qui::Application app(argc, argv);
   int exit_code = app.SpawnProcess();
   if (exit_code >= 0) {
