@@ -1,6 +1,7 @@
 #include "application.h"
 
 #include "gflags/gflags.h"
+#include "main_process.h"
 #include "render_process.h"
 
 DEFINE_string(type, "main", "process type");
@@ -16,7 +17,7 @@ Application::~Application() {
   gflags::ShutDownCommandLineFlags();
 }
 
-int Application::SpawnProcess() {
+int Application::ExecuteProcess() {
   return 1;
 }
 
