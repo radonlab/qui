@@ -2,7 +2,7 @@
 
 #include "GLFW/glfw3.h"
 
-namespace qui {
+namespace qui::process {
 
 RenderProcess::RenderProcess() {
   glfwInit();
@@ -14,4 +14,4 @@ RenderProcess::~RenderProcess() {
 
 int RenderProcess::Execute() {}
 
-}  // namespace qui
+}  // namespace qui::process

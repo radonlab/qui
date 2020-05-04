@@ -2,9 +2,9 @@
 #define QUI_SRC_PROCESS_MAIN_PROCESS_H_
 
 #include "qui_types.h"
-#include "process/process.h"
+#include "process.h"
 
-namespace qui {
+namespace qui::process {
 
 class MainProcess : public Process {
  public:
@@ -16,6 +16,6 @@ class MainProcess : public Process {
   DISALLOW_COPY_AND_ASSIGN(MainProcess);
 };
 
-}  // namespace qui
+}  // namespace qui::process
 
 #endif  // QUI_SRC_PROCESS_MAIN_PROCESS_H_

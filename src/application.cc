@@ -14,9 +14,9 @@ Application::Application(int argc, char* argv[])
   gflags::ParseCommandLineFlags(&argc, &argv, true);
   // initialize application
   if (FLAGS_type == "main") {
-    process_ = std::make_unique<MainProcess>();
+    process_ = std::make_unique<process::MainProcess>();
   } else if (FLAGS_type == "render") {
-    process_ = std::make_unique<RenderProcess>();
+    process_ = std::make_unique<process::RenderProcess>();
   }
 }
 

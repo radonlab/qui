@@ -1,5 +1,5 @@
-#ifndef QUI_SRC_PROCESS_PROCESS_H_
-#define QUI_SRC_PROCESS_PROCESS_H_
+#ifndef QUI_SRC_PROCESS_H_
+#define QUI_SRC_PROCESS_H_
 
 #include "qui_types.h"
 
@@ -17,4 +17,4 @@ class Process {
 
 }  // namespace qui
 
-#endif  // QUI_SRC_PROCESS_PROCESS_H_
+#endif  // QUI_SRC_PROCESS_H_
