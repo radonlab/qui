@@ -1,9 +1,13 @@
 #ifndef QUI_SRC_APPLICATION_H_
 #define QUI_SRC_APPLICATION_H_
 
+#include <memory>
+
 #include "qui_types.h"
 
 namespace qui {
+
+class Process;
 
 class Application {
  public:
@@ -11,8 +15,11 @@ class Application {
   ~Application();
   int ExecuteProcess();
   int Run();
+  Process* process() { return process_.get(); }
 
  private:
+  std::unique_ptr<Process> process_;
+
   DISALLOW_COPY_AND_ASSIGN(Application);
 };
 

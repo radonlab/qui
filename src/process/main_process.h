@@ -10,6 +10,7 @@ class MainProcess : public Process {
  public:
   MainProcess();
   ~MainProcess();
+  int Execute();
 
  private:
   DISALLOW_COPY_AND_ASSIGN(MainProcess);

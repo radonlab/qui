@@ -10,6 +10,7 @@ class RenderProcess : public Process {
  public:
   RenderProcess();
   ~RenderProcess();
+  int Execute();
 
  private:
   DISALLOW_COPY_AND_ASSIGN(RenderProcess);
