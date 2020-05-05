@@ -1,5 +1,7 @@
 #include "main_process.h"
 
+#include "result_codes.h"
+
 namespace qui::process {
 
 MainProcess::MainProcess() {}
@@ -7,7 +9,7 @@ MainProcess::MainProcess() {}
 MainProcess::~MainProcess() {}
 
 int MainProcess::Execute() {
-  return -1;
+  return kProcessAbort;
 }
 
 }  // namespace qui::process

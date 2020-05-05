@@ -1,5 +1,7 @@
 #include "application.h"
 
+#include <cstdlib>
+
 #include "gflags/gflags.h"
 #include "process/main_process.h"
 #include "process/render_process.h"
@@ -25,6 +27,9 @@ Application::~Application() {
 }
 
 int Application::ExecuteProcess() {
+  if (process_ == nullptr) {
+    exit(-1);
+  }
   return process_->Execute();
 }
 
