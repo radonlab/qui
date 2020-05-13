@@ -15,6 +15,7 @@ class Application {
   ~Application();
   int ExecuteProcess();
   int Run();
+  void CreateWindow(const char* title, int width, int height);
   Process* process() { return process_.get(); }
 
  private:

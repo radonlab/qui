@@ -7,6 +7,6 @@ int main(int argc, char* argv[]) {
   if (exit_code >= 0) {
     return exit_code;
   }
-  qui::Window::CreateWindow("simple", 800, 500);
+  app.CreateWindow("simple", 800, 500);
   return app.Run();
 }

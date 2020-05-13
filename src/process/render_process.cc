@@ -12,6 +12,8 @@ RenderProcess::~RenderProcess() {
   glfwTerminate();
 }
 
-int RenderProcess::Execute() {}
+int RenderProcess::Execute() {
+  return 0;
+}
 
 }  // namespace qui::process
