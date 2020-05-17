@@ -10,14 +10,24 @@ set(QUI_SOURCES
   process/render_process.cc
 )
 
+if(UNIX)
+  list(APPEND QUI_SOURCES
+    base/process_utils_unix.cc
+  )
+endif()
+
 set(QUI_HEADERS
   application.h
   context.h
   process.h
   qui_types.h
   window.h
+  base/debug.h
+  base/printer.h
+  base/process_utils.h
   process/main_process.h
   process/render_process.h
+  process/result_codes.h
 )
 
 add_library(qui STATIC ${QUI_SOURCES} ${QUI_HEADERS})

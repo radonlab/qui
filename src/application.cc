@@ -4,9 +4,9 @@
 
 #include "gflags/gflags.h"
 #include "base/debug.h"
+#include "base/process_utils.h"
 #include "process/main_process.h"
 #include "process/render_process.h"
-#include "process/process_utils.h"
 
 const char* program_name;
 
@@ -43,7 +43,7 @@ int Application::Run() {
 
 void Application::CreateWindow(const char* title, int width, int height) {
   std::vector<std::string> args = {program_name, "--type", "render"};
-  process::LaunchProcess(args);
+  base::LaunchProcess(args);
 }
 
 }  // namespace qui
