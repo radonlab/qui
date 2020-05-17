@@ -5,12 +5,22 @@
 #include "gflags/gflags.h"
 #include "base/debug.h"
 #include "base/process_utils.h"
-#include "process/main_process.h"
-#include "process/render_process.h"
+#include "process/master_process.h"
+#include "process/renderer_process.h"
+
+enum ProcessType {
+  kProcessMaster = 0,
+  kProcessRenderer,
+};
+
+const char* kProcessTypeFlags[] = {
+  "",
+  "renderer"
+};
 
 const char* program_name;
 
-DEFINE_string(type, "main", "process type");
+DEFINE_string(type, kProcessTypeFlags[kProcessMaster], "process type");
 
 namespace qui {
 
@@ -20,10 +30,10 @@ Application::Application(int argc, char* argv[])
   gflags::SetUsageMessage("");
   gflags::ParseCommandLineFlags(&argc, &argv, true);
   // initialize application
-  if (FLAGS_type == "main") {
-    process_ = std::make_unique<process::MainProcess>();
-  } else if (FLAGS_type == "render") {
-    process_ = std::make_unique<process::RenderProcess>();
+  if (FLAGS_type == kProcessTypeFlags[kProcessMaster]) {
+    process_ = std::make_unique<process::MasterProcess>();
+  } else if (FLAGS_type == kProcessTypeFlags[kProcessRenderer]) {
+    process_ = std::make_unique<process::RendererProcess>();
   } else {
     base::unreachable();
   }
@@ -42,7 +52,7 @@ int Application::Run() {
 }
 
 void Application::CreateWindow(const char* title, int width, int height) {
-  std::vector<std::string> args = {program_name, "--type", "render"};
+  std::vector<std::string> args = {program_name, "--type", kProcessTypeFlags[kProcessRenderer]};
   base::LaunchProcess(args);
 }
 

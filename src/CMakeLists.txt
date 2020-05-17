@@ -6,8 +6,8 @@ set(QUI_SOURCES
   application.cc
   context.cc
   window.cc
-  process/main_process.cc
-  process/render_process.cc
+  process/master_process.cc
+  process/renderer_process.cc
 )
 
 if(UNIX)
@@ -25,8 +25,8 @@ set(QUI_HEADERS
   base/debug.h
   base/printer.h
   base/process_utils.h
-  process/main_process.h
-  process/render_process.h
+  process/master_process.h
+  process/renderer_process.h
   process/result_codes.h
 )
 
