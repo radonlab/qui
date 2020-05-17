@@ -3,6 +3,7 @@
 #include <cstdlib>
 
 #include "gflags/gflags.h"
+#include "base/debug.h"
 #include "process/main_process.h"
 #include "process/render_process.h"
 #include "process/process_utils.h"
@@ -23,6 +24,8 @@ Application::Application(int argc, char* argv[])
     process_ = std::make_unique<process::MainProcess>();
   } else if (FLAGS_type == "render") {
     process_ = std::make_unique<process::RenderProcess>();
+  } else {
+    base::unreachable();
   }
 }
 
@@ -31,9 +34,6 @@ Application::~Application() {
 }
 
 int Application::ExecuteProcess() {
-  if (process_ == nullptr) {
-    exit(-1);
-  }
   return process_->Execute();
 }
 
