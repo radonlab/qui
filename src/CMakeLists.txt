@@ -23,7 +23,7 @@ set(QUI_HEADERS
   qui_types.h
   window.h
   base/debug.h
-  base/printer.h
+  base/format_printer.h
   base/process_utils.h
   process/master_process.h
   process/renderer_process.h

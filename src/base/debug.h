@@ -3,14 +3,14 @@
 
 #include <cstdlib>
 
-#include "base/printer.h"
+#include "base/format_printer.h"
 
 namespace qui::base {
 
 template<typename Ch, typename... Args>
 void debugf(const Ch* fmt, const Args&... args) {
 #ifndef NDEBUG
-  Printer(fmt).apply(args...);
+  FormatPrinter(fmt).Apply(args...);
 #endif
 }
 
