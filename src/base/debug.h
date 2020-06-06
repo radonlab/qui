@@ -2,27 +2,32 @@
 #define QUI_SRC_BASE_DEBUG_H_
 
 #include <cstdlib>
-
-#include "base/format_printer.h"
+#include <iostream>
 
 namespace qui::base {
 
-template<typename Ch, typename... Args>
-void debugf(const Ch* fmt, const Args&... args) {
+inline void println() {
+  std::cout << std::endl;
+}
+
+template<typename T, typename... Args>
+void println(const T& arg, const Args&... args) {
+  std::cout << arg;
+  println(args...);
+}
+
+template<typename... Args>
+void debug(const Args&... args) {
 #ifndef NDEBUG
-  FormatPrinter(fmt).Apply(args...);
+  println(args...);
 #endif
 }
 
-template<typename Ch, typename... Args>
-void panicf(const Ch* fmt, const Args&... args) {
-  debugf(fmt, args...);
+template<typename... Args>
+void panic(const Args&... args) {
+  debug(args...);
   // safely exit in subprocess
   _Exit(EXIT_FAILURE);
-}
-
-inline void unreachable() {
-  panicf("unreachable");
 }
 
 }  // namespace qui::base
