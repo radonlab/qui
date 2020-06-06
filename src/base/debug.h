@@ -1,13 +1,19 @@
 #ifndef QUI_SRC_BASE_DEBUG_H_
 #define QUI_SRC_BASE_DEBUG_H_
 
+#include <cassert>
 #include <cstdlib>
 #include <iostream>
 
 namespace qui::base {
 
 inline void println() {
-  std::cout << std::endl;
+  // empty
+}
+
+template<typename T>
+void println(const T& arg) {
+  std::cout << arg << std::endl;
 }
 
 template<typename T, typename... Args>
