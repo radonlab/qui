@@ -8,6 +8,7 @@ set(QUI_SOURCES
   window.cc
   process/master_process.cc
   process/renderer_process.cc
+  process/zygote_process.cc
 )
 
 if(UNIX)
@@ -27,6 +28,7 @@ set(QUI_HEADERS
   process/master_process.h
   process/renderer_process.h
   process/result_codes.h
+  process/zygote_process.h
 )
 
 add_library(qui STATIC ${QUI_SOURCES} ${QUI_HEADERS})
