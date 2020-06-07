@@ -12,25 +12,27 @@ inline void println() {
 }
 
 template<typename T>
-void println(const T& arg) {
+void println(T&& arg) {
   std::cout << arg << std::endl;
 }
 
 template<typename T, typename... Args>
-void println(const T& arg, const Args&... args) {
+void println(T&& arg, Args&&... args) {
+  constexpr size_t args_count = 1 + sizeof...(Args);
+  static_assert(args_count <= 6, "too many arguments");
   std::cout << arg;
   println(args...);
 }
 
 template<typename... Args>
-void debug(const Args&... args) {
+void debug(Args&&... args) {
 #ifndef NDEBUG
   println(args...);
 #endif
 }
 
 template<typename... Args>
-void panic(const Args&... args) {
+void panic(Args&&... args) {
   debug(args...);
   // safely exit in subprocess
   _Exit(EXIT_FAILURE);

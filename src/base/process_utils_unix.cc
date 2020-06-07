@@ -9,7 +9,7 @@ namespace qui::base {
 int LaunchProcess(const std::vector<std::string>& args) {
   int pid = fork();
   if (pid == -1) {
-    base::panicf("fork process failed");
+    base::panic("fork process failed");
   } else if (pid == 0) {
     const char* exe = args[0].c_str();
     std::vector<char*> argv;
@@ -18,7 +18,7 @@ int LaunchProcess(const std::vector<std::string>& args) {
     }
     argv.push_back(nullptr);
     execv(exe, argv.data());
-    base::unreachable();
+    base::panic("process error");
   }
   return pid;
 }

@@ -35,7 +35,7 @@ Application::Application(int argc, char* argv[])
   } else if (FLAGS_type == kProcessTypeFlags[kProcessRenderer]) {
     process_ = std::make_unique<process::RendererProcess>();
   } else {
-    base::unreachable();
+    base::panic("invalid type argument");
   }
 }
 
