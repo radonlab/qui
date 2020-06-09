@@ -6,6 +6,7 @@ set(QUI_SOURCES
   application.cc
   context.cc
   window.cc
+  process/launch_params.cc
   process/master_process.cc
   process/renderer_process.cc
   process/zygote_process.cc
@@ -25,6 +26,7 @@ set(QUI_HEADERS
   window.h
   base/debug.h
   base/process_utils.h
+  process/launch_params.h
   process/master_process.h
   process/renderer_process.h
   process/result_codes.h
