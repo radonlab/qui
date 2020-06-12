@@ -5,8 +5,9 @@ namespace qui::process {
 static LaunchParams launchParams;
 
 LaunchParams SetLaunchParams(int argc, char* argv[]) {
-  launchParams.args.reserve(argc);
-  for (size_t i = 0; i < argc; i++) {
+  launchParams.path = argv[0];
+  launchParams.args.reserve(argc - 1);
+  for (size_t i = 1; i < argc; i++) {
     launchParams.args.push_back(argv[i]);
   }
 }

@@ -5,6 +5,7 @@
 #include "gflags/gflags.h"
 #include "base/debug.h"
 #include "base/process_utils.h"
+#include "process/launch_params.h"
 #include "process/master_process.h"
 #include "process/renderer_process.h"
 
@@ -18,15 +19,13 @@ const char* kProcessTypeFlags[] = {
   "renderer"
 };
 
-const char* program_name;
-
 DEFINE_string(type, kProcessTypeFlags[kProcessMaster], "process type");
 
 namespace qui {
 
 Application::Application(int argc, char* argv[])
     : process_(nullptr) {
-  program_name = argv[0];
+  process::SetLaunchParams(argc, argv);
   gflags::SetUsageMessage("");
   gflags::ParseCommandLineFlags(&argc, &argv, true);
   // initialize application
@@ -52,7 +51,8 @@ int Application::Run() {
 }
 
 void Application::CreateWindow(const char* title, int width, int height) {
-  std::vector<std::string> args = {program_name, "--type", kProcessTypeFlags[kProcessRenderer]};
+  std::string path = process::CurrentLaunchParams().path;
+  std::vector<std::string> args = {path, "--type", kProcessTypeFlags[kProcessRenderer]};
   base::LaunchProcess(args);
 }
 

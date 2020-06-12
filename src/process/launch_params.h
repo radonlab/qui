@@ -7,6 +7,7 @@
 namespace qui::process {
 
 struct LaunchParams {
+  std::string path;
   std::vector<std::string> args;
 };
 
