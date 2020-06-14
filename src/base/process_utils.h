@@ -6,7 +6,7 @@
 
 namespace qui::base {
 
-int LaunchProcess(const std::vector<std::string>& args);
+int LaunchProcess(const std::string& path, const std::vector<std::string>& args);
 
 }  // namespace qui::base
 
