@@ -25,7 +25,7 @@ namespace qui {
 
 Application::Application(int argc, char* argv[])
     : process_(nullptr) {
-  process::SetLaunchParams(argc, argv);
+  process::InitLaunchParams(argc, argv);
   gflags::SetUsageMessage("");
   gflags::ParseCommandLineFlags(&argc, &argv, true);
   // initialize application

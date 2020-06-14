@@ -11,8 +11,8 @@ struct LaunchParams {
   std::vector<std::string> args;
 };
 
-LaunchParams SetLaunchParams(int argc, char* argv[]);
-LaunchParams CurrentLaunchParams();
+void InitLaunchParams(int argc, char* argv[]);
+const LaunchParams& CurrentLaunchParams();
 
 }  // namespace qui::process
 
