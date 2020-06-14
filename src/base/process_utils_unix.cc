@@ -18,7 +18,7 @@ int LaunchProcess(const std::string& path, const std::vector<std::string>& args)
       argv.push_back(const_cast<char*>(arg.c_str()));
     }
     argv.push_back(nullptr);
-    execv(path.c_str(), argv.data());
+    execvp(path.c_str(), argv.data());
     base::panic("process error");
   }
   return pid;
