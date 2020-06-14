@@ -7,15 +7,18 @@
 #include "base/process_utils.h"
 #include "process/launch_params.h"
 #include "process/master_process.h"
+#include "process/zygote_process.h"
 #include "process/renderer_process.h"
 
 enum ProcessType {
   kProcessMaster = 0,
+  kProcessZygote,
   kProcessRenderer,
 };
 
 const char* kProcessTypeFlags[] = {
   "",
+  "zygote",
   "renderer"
 };
 
@@ -31,6 +34,8 @@ Application::Application(int argc, char* argv[])
   // initialize application
   if (FLAGS_type == kProcessTypeFlags[kProcessMaster]) {
     process_ = std::make_unique<process::MasterProcess>();
+  } else if (FLAGS_type == kProcessTypeFlags[kProcessZygote]) {
+    process_ = std::make_unique<process::ZygoteProcess>();
   } else if (FLAGS_type == kProcessTypeFlags[kProcessRenderer]) {
     process_ = std::make_unique<process::RendererProcess>();
   } else {
