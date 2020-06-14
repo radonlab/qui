@@ -57,8 +57,8 @@ int Application::Run() {
 
 void Application::CreateWindow(const char* title, int width, int height) {
   std::string path = process::CurrentLaunchParams().path;
-  std::vector<std::string> args = {path, "--type", kProcessTypeFlags[kProcessRenderer]};
-  base::LaunchProcess(args);
+  std::vector<std::string> args = {"--type", kProcessTypeFlags[kProcessRenderer]};
+  base::LaunchProcess(path, args);
 }
 
 }  // namespace qui

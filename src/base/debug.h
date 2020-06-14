@@ -20,7 +20,7 @@ template<typename T, typename... Args>
 void println(T&& arg, Args&&... args) {
   constexpr size_t args_count = 1 + sizeof...(Args);
   static_assert(args_count <= 6, "too many arguments");
-  std::cout << arg;
+  std::cout << arg << " ";
   println(args...);
 }
 

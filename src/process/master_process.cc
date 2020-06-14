@@ -14,8 +14,8 @@ MasterProcess::~MasterProcess() {}
 
 int MasterProcess::Execute() {
   std::string path = CurrentLaunchParams().path;
-  std::vector<std::string> args = {path, "--type", "zygote"};
-  base::LaunchProcess(args);
+  std::vector<std::string> args = {"--type", "zygote"};
+  base::LaunchProcess(path, args);
   return kProcessAbort;
 }
 
