@@ -4,7 +4,7 @@
 
 #include "base/process_utils.h"
 #include "process/launch_params.h"
-#include "process/result_codes.h"
+#include "process/process_type.h"
 
 namespace qui::process {
 
@@ -16,7 +16,7 @@ int MasterProcess::Execute() {
   std::string path = CurrentLaunchParams().path;
   std::vector<std::string> args = {"--type", "zygote"};
   base::LaunchProcess(path, args);
-  return kProcessAbort;
+  return Process::kExitContinue;
 }
 
 void MasterProcess::Kill(int exit_code) {

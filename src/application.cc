@@ -10,18 +10,6 @@
 #include "process/zygote_process.h"
 #include "process/renderer_process.h"
 
-enum ProcessType {
-  kProcessMaster = 0,
-  kProcessZygote,
-  kProcessRenderer,
-};
-
-const char* kProcessTypeFlags[] = {
-  "",
-  "zygote",
-  "renderer"
-};
-
 DEFINE_string(type, kProcessTypeFlags[kProcessMaster], "process type");
 
 namespace qui {

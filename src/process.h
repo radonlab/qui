@@ -7,6 +7,12 @@ namespace qui {
 
 class Process {
  public:
+  enum ExitCode {
+    kExitContinue = -1,
+    kExitSuccess  = 0,
+    kExitFailure  = 1,
+  };
+
   Process() = default;
   virtual ~Process() = default;
   virtual int Execute() = 0;
