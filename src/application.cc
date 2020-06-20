@@ -6,11 +6,12 @@
 #include "base/debug.h"
 #include "base/process_utils.h"
 #include "process/launch_params.h"
+#include "process/process_type.h"
 #include "process/master_process.h"
 #include "process/zygote_process.h"
 #include "process/renderer_process.h"
 
-DEFINE_string(type, kProcessTypeFlags[kProcessMaster], "process type");
+DEFINE_string(type, "", "process type");
 
 namespace qui {
 
@@ -45,7 +46,9 @@ int Application::Run() {
 
 void Application::CreateWindow(const char* title, int width, int height) {
   std::string path = process::CurrentLaunchParams().path;
-  std::vector<std::string> args = {"--type", kProcessTypeFlags[kProcessRenderer]};
+  std::vector<std::string> args = {
+    "--type", GetProcessTypeFlag(process::ProcessType::kProcessRenderer),
+  };
   base::LaunchProcess(path, args);
 }
 

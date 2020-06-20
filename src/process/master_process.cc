@@ -14,12 +14,14 @@ MasterProcess::~MasterProcess() {}
 
 int MasterProcess::Execute() {
   std::string path = CurrentLaunchParams().path;
-  std::vector<std::string> args = {"--type", "zygote"};
+  std::vector<std::string> args = {
+    "--type", GetProcessTypeFlag(ProcessType::kProcessZygote),
+  };
   base::LaunchProcess(path, args);
   return Process::kExitContinue;
 }
 
-void MasterProcess::Kill(int exit_code) {
+void MasterProcess::Exit(int exit_code) {
   exit(exit_code);
 }
 

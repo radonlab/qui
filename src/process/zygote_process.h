@@ -11,7 +11,7 @@ class ZygoteProcess : public Process {
   ZygoteProcess();
   ~ZygoteProcess();
   int Execute();
-  void Kill(int exit_code);
+  void Exit(int exit_code);
 
  private:
   DISALLOW_COPY_AND_ASSIGN(ZygoteProcess);

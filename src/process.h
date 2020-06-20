@@ -16,7 +16,7 @@ class Process {
   Process() = default;
   virtual ~Process() = default;
   virtual int Execute() = 0;
-  virtual void Kill(int exit_code) = 0;
+  virtual void Exit(int exit_code) = 0;
 
  private:
   DISALLOW_COPY_AND_ASSIGN(Process);

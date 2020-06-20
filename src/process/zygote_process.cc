@@ -12,7 +12,7 @@ int ZygoteProcess::Execute() {
   return Process::kExitSuccess;
 }
 
-void ZygoteProcess::Kill(int exit_code) {
+void ZygoteProcess::Exit(int exit_code) {
   exit(exit_code);
 }
 

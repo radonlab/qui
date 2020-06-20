@@ -18,7 +18,7 @@ int RendererProcess::Execute() {
   return 0;
 }
 
-void RendererProcess::Kill(int exit_code) {
+void RendererProcess::Exit(int exit_code) {
   // exit subprocess
   _Exit(exit_code);
 }
