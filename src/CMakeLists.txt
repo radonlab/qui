@@ -8,6 +8,7 @@ set(QUI_SOURCES
   window.cc
   process/launch_params.cc
   process/master_process.cc
+  process/process_factory.cc
   process/process_type.cc
   process/renderer_process.cc
   process/zygote_process.cc
@@ -29,6 +30,7 @@ set(QUI_HEADERS
   base/process_utils.h
   process/launch_params.h
   process/master_process.h
+  process/process_factory.h
   process/process_type.h
   process/renderer_process.h
   process/zygote_process.h

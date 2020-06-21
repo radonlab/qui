@@ -6,10 +6,8 @@
 #include "base/debug.h"
 #include "base/process_utils.h"
 #include "process/launch_params.h"
+#include "process/process_factory.h"
 #include "process/process_type.h"
-#include "process/master_process.h"
-#include "process/zygote_process.h"
-#include "process/renderer_process.h"
 
 DEFINE_string(type, "", "process type");
 
@@ -21,15 +19,7 @@ Application::Application(int argc, char* argv[])
   gflags::SetUsageMessage("");
   gflags::ParseCommandLineFlags(&argc, &argv, true);
   // initialize application
-  if (FLAGS_type == kProcessTypeFlags[kProcessMaster]) {
-    process_ = std::make_unique<process::MasterProcess>();
-  } else if (FLAGS_type == kProcessTypeFlags[kProcessZygote]) {
-    process_ = std::make_unique<process::ZygoteProcess>();
-  } else if (FLAGS_type == kProcessTypeFlags[kProcessRenderer]) {
-    process_ = std::make_unique<process::RendererProcess>();
-  } else {
-    base::panic("invalid type argument");
-  }
+  process_ = process::ProcessFactory::CreateProcess(FLAGS_type);
 }
 
 Application::~Application() {
