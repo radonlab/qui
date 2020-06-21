@@ -9,12 +9,12 @@
 namespace qui::process {
 
 std::unique_ptr<Process> ProcessFactory::CreateProcess(const std::string& type) {
-  if (type == GetProcessTypeFlag(process::ProcessType::kProcessMaster)) {
-    return std::make_unique<process::MasterProcess>();
-  } else if (type == GetProcessTypeFlag(process::ProcessType::kProcessZygote)) {
-    return std::make_unique<process::ZygoteProcess>();
-  } else if (type == GetProcessTypeFlag(process::ProcessType::kProcessRenderer)) {
-    return std::make_unique<process::RendererProcess>();
+  if (type == GetProcessTypeFlag(ProcessType::kProcessMaster)) {
+    return std::make_unique<MasterProcess>();
+  } else if (type == GetProcessTypeFlag(ProcessType::kProcessZygote)) {
+    return std::make_unique<ZygoteProcess>();
+  } else if (type == GetProcessTypeFlag(ProcessType::kProcessRenderer)) {
+    return std::make_unique<RendererProcess>();
   } else {
     base::panic("invalid type argument");
   }
